@@ -131,7 +131,7 @@ app.post("/petugas", async (res, req) => {
   let param ={
     username : req.params.username,
     password : md5(req.params.username),
-    level : "petuigas"
+    level : "petugas"
   }
   let result = await patugas.findOne({where: param})
   if (result) {
