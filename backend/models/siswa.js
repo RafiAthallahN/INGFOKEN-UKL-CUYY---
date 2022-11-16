@@ -24,8 +24,8 @@ module.exports = (sequelize, DataTypes) => {
         as: 'spp'
       })
       this.hasOne(models.pembayaran, {
-        foreignKey: 'id_pembayaran',
-        as: 'spp'
+        foreignKey: 'id_spp',
+        as: 'pembayaran'
       })
     }
   }
