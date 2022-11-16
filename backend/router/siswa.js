@@ -114,3 +114,29 @@ app.delete("/:id", auth, async (res, req) => {
       })
     })
 })
+
+//Login Siswa
+app.post("/auth", async (res, req) => {
+  let param = {
+    nisn: req.params.nisn,
+    password: md5(req.params.username)
+  }
+  let result = await siswa.findOne({ where: param })
+  if (result) {
+    let payload = JSON.stringify(result)
+    //generate token
+    let token = jwt.sign(payload, secret_key)
+    res.json({
+      Logged: true,
+      data: result,
+      token: token
+    })
+  } else {
+    res.json({
+      Logged: false,
+      message: "Invalid Username / Password"
+    })
+  }
+})
+
+module.exports = app
