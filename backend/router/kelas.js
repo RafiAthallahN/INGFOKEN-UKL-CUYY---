@@ -64,7 +64,7 @@ app.put("/", async (req, res) => {
     nama_kelas: req.body.nama_kelas,
     kompetensi_keahlian: req.body.kompetensi_keahlian
   }
-  kelas.update({ where: param })
+  kelas.update(data, { where: param })
     .then(result => {
       res.json({
         message: "Data Updated"

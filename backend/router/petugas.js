@@ -70,7 +70,7 @@ app.put("/", auth, async (req, res) => {
     password: md5(req.body.password),
     level: req.body.level,
   }
-  petugas.update({ where: param })
+  petugas.update(data, { where: param })
     .then(result => {
       res.json({
         message: "Data Updated",

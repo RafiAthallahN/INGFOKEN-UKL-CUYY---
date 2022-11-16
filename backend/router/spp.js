@@ -64,7 +64,7 @@ app.put("/", async (req, res) => {
     nominal: req.body.nominal,
     tahun: req.body.tahun
   }
-  spp.update({ where: param })
+  spp.update(data, { where: param })
     .then(result => {
       res.json({
         message: "Data Updated"

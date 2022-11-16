@@ -101,7 +101,7 @@ app.put("/", async (req, res) => {
     id_spp: req.body.id_spp,
     jumlah_bayar: req.body.jumlah_bayar
   }
-  pembayaran.update({ where: param })
+  pembayaran.update(data, { where: param })
     .then(result => {
       res.json({
         message: "Data Updated",
