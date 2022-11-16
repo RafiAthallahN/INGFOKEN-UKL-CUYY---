@@ -91,7 +91,7 @@ app.delete("/:id", auth, async (res, req) => {
   petugas.destroy({ where: param })
     .then(result => {
       res.json({
-        data: result
+        message: "Data Deleted"
       })
     })
     .catch(error => {
