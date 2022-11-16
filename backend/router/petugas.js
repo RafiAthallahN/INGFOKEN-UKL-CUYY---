@@ -8,7 +8,7 @@ const auth = require("../auth")
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 
-app.get("/", async (res, req) => {
+app.get("/",auth, async (res, req) => {
   petugas.findAll()
     .then(result => {
       res.json({
