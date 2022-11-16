@@ -57,7 +57,7 @@ app.post("/", async (req, res) => {
 app.put("/", async (req, res) => {
 
   let param = {
-    id_spp: req.body.id
+    id_spp: req.body.id_spp
   }
 
   let data = {

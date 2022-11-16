@@ -62,7 +62,7 @@ app.post("/", auth, async (req, res) => {
 
 app.put("/", auth, async (req, res) => {
   let param = {
-    id_petugas: req.body.id
+    id_petugas: req.body.id_petugas
   }
   let data = {
     username: req.body.username,

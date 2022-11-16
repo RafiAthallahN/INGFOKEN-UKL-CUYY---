@@ -73,7 +73,7 @@ app.post("/", auth, async (req, res) => {
 
 app.put("/", auth, async (req, res) => {
   let param = {
-    nisn: req.body.id
+    nisn: req.body.nisn
   }
   let data = {
     nis: req.body.nis,
