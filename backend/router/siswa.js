@@ -134,7 +134,7 @@ app.post("/auth", async (res, req) => {
   } else {
     res.json({
       Logged: false,
-      message: "Invalid Username / Password"
+      message: "Invalid NISN / Password"
     })
   }
 })
