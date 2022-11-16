@@ -4,7 +4,7 @@ const kelas = require("../models/index").kelas
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-app.get("/", async (res, req) => {
+app.get("/", async (req, res) => {
   kelas.findAll()
     .then(result => {
       res.json({
@@ -18,7 +18,7 @@ app.get("/", async (res, req) => {
     })
 })
 
-app.get("/:id", async (res, req) => {
+app.get("/:id", async (req, res) => {
   let param = {
     id_kelas: req.params.id
   }
@@ -35,7 +35,7 @@ app.get("/:id", async (res, req) => {
     })
 })
 
-app.post("/", async (res, req) => {
+app.post("/", async (req, res) => {
   let data = {
     nama_kelas: req.body.nama_kelas,
     kompetensi_keahlian: req.body.kompetensi_keahlian
@@ -54,7 +54,7 @@ app.post("/", async (res, req) => {
     })
 })
 
-app.put("/", async (res, req) => {
+app.put("/", async (req, res) => {
 
   let param = {
     id_kelas: req.body.id
@@ -77,7 +77,7 @@ app.put("/", async (res, req) => {
     })
 })
 
-app.delete("/:id", async (res, req) => {
+app.delete("/:id", async (req, res) => {
   let param = {
     id_kelas: req.params.id
   }

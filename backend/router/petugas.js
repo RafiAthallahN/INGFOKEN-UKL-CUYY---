@@ -8,7 +8,7 @@ const auth = require("../auth")
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-app.get("/", auth, async (res, req) => {
+app.get("/", auth, async (req, res) => {
   petugas.findAll()
     .then(result => {
       res.json({
@@ -22,7 +22,7 @@ app.get("/", auth, async (res, req) => {
     })
 })
 
-app.get("/:id", auth, async (res, req) => {
+app.get("/:id", auth, async (req, res) => {
   let param = {
     id_petugas: req.params.id
   }
@@ -39,7 +39,7 @@ app.get("/:id", auth, async (res, req) => {
     })
 })
 
-app.post("/", auth, async (res, req) => {
+app.post("/", auth, async (req, res) => {
   let data = {
     username: req.body.username,
     nama: req.body.nama,
@@ -60,7 +60,7 @@ app.post("/", auth, async (res, req) => {
     })
 })
 
-app.put("/", auth, async (res, req) => {
+app.put("/", auth, async (req, res) => {
   let param = {
     id_petugas: req.body.id
   }
@@ -84,7 +84,7 @@ app.put("/", auth, async (res, req) => {
     })
 })
 
-app.delete("/:id", auth, async (res, req) => {
+app.delete("/:id", auth, async (req, res) => {
   let param = {
     id_petugas: req.params.id
   }
@@ -102,7 +102,7 @@ app.delete("/:id", auth, async (res, req) => {
 })
 
 //Login Admin
-app.post("/admin", async (res, req) => {
+app.post("/admin", async (req, res) => {
   let param = {
     username: req.params.username,
     password: md5(req.params.username),
@@ -127,7 +127,7 @@ app.post("/admin", async (res, req) => {
 })
 
 //Login petugas
-app.post("/petugas", async (res, req) => {
+app.post("/petugas", async (req, res) => {
   let param = {
     username: req.params.username,
     password: md5(req.params.username),

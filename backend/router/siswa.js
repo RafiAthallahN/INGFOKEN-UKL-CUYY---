@@ -10,7 +10,7 @@ const app = express()
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-app.get("/", auth, async (res, req) => {
+app.get("/", auth, async (req, res) => {
   siswa.findAll({
     include: ["kelas", "spp"]
   })
@@ -26,7 +26,7 @@ app.get("/", auth, async (res, req) => {
     })
 })
 
-app.get("/:id", auth, async (res, req) => {
+app.get("/:id", auth, async (req, res) => {
   let param = {
     nisn: req.params.id
   }
@@ -46,7 +46,7 @@ app.get("/:id", auth, async (res, req) => {
     })
 })
 
-app.post("/", auth, async (res, req) => {
+app.post("/", auth, async (req, res) => {
   let data = {
     nisn: req.body.nisn,
     nis: req.body.nis,
@@ -71,7 +71,7 @@ app.post("/", auth, async (res, req) => {
     })
 })
 
-app.put("/", auth, async (res, req) => {
+app.put("/", auth, async (req, res) => {
   let param = {
     nisn: req.body.id
   }
@@ -98,7 +98,7 @@ app.put("/", auth, async (res, req) => {
     })
 })
 
-app.delete("/:id", auth, async (res, req) => {
+app.delete("/:id", auth, async (req, res) => {
   let param = {
     nisn: req.params.id
   }
@@ -116,7 +116,7 @@ app.delete("/:id", auth, async (res, req) => {
 })
 
 //Login Siswa
-app.post("/auth", async (res, req) => {
+app.post("/auth", async (req, res) => {
   let param = {
     nisn: req.params.nisn,
     password: md5(req.params.username)

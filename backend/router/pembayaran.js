@@ -8,7 +8,7 @@ const app = express()
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-app.get("/", async (res, req) => {
+app.get("/", async (req, res) => {
   pembayaran.findAll({
     include: ["siswa", "petugas"]
   })
@@ -24,7 +24,7 @@ app.get("/", async (res, req) => {
     })
 })
 //GET id_petugas
-app.get("/:id", async (res, req) => {
+app.get("/:id", async (req, res) => {
   let param = {
     id_petugas: req.params.id
   }
@@ -44,7 +44,7 @@ app.get("/:id", async (res, req) => {
     })
 })
 //GET NISN
-app.get("/:id", async (res, req) => {
+app.get("/:id", async (req, res) => {
   let param = {
     nisn: req.params.id
   }
@@ -63,7 +63,7 @@ app.get("/:id", async (res, req) => {
       })
     })
 })
-app.post("/", async (res, req) => {
+app.post("/", async (req, res) => {
   let data = {
     id_petugas: req.body.id_petugas,
     nisn: req.body.nisn,
@@ -87,7 +87,7 @@ app.post("/", async (res, req) => {
     })
 })
 
-app.put("/", async (res, req) => {
+app.put("/", async (req, res) => {
   let param = {
     id_pembayaran: req.body.id_pembayaran
   }
@@ -115,7 +115,7 @@ app.put("/", async (res, req) => {
     })
 })
 
-app.delete("/:id", async (res, req) => {
+app.delete("/:id", async (req, res) => {
   let param = {
     id_pembayaran: req.params.id
   }

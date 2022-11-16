@@ -4,7 +4,7 @@ const spp = require("../models/index").spp
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-app.get("/", async (res, req) => {
+app.get("/", async (req, res) => {
   spp.findAll()
     .then(result => {
       res.json({
@@ -18,7 +18,7 @@ app.get("/", async (res, req) => {
     })
 })
 
-app.get("/:id", async (res, req) => {
+app.get("/:id", async (req, res) => {
   let param = {
     id_spp: req.params.id
   }
@@ -35,7 +35,7 @@ app.get("/:id", async (res, req) => {
     })
 })
 
-app.post("/", async (res, req) => {
+app.post("/", async (req, res) => {
   let data = {
     nominal: req.body.nominal,
     tahun: req.body.tahun
@@ -54,7 +54,7 @@ app.post("/", async (res, req) => {
     })
 })
 
-app.put("/", async (res, req) => {
+app.put("/", async (req, res) => {
 
   let param = {
     id_spp: req.body.id
@@ -77,7 +77,7 @@ app.put("/", async (res, req) => {
     })
 })
 
-app.delete("/:id", async (res, req) => {
+app.delete("/:id", async (req, res) => {
   let param = {
     id_spp: req.params.id
   }
