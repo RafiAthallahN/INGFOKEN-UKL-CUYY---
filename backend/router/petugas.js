@@ -5,10 +5,10 @@ const app = express()
 const secret_key = "pinfo"
 const petugas = require("../models/index").petugas
 const auth = require("../auth")
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-app.get("/",auth, async (res, req) => {
+app.get("/", auth, async (res, req) => {
   petugas.findAll()
     .then(result => {
       res.json({
@@ -22,11 +22,11 @@ app.get("/",auth, async (res, req) => {
     })
 })
 
-app.get("/:id", async (res, req) => {
+app.get("/:id", auth, async (res, req) => {
   let param = {
-    id_petugas : req.params.id
+    id_petugas: req.params.id
   }
-  petugas.findOne({where:param})
+  petugas.findOne({ where: param })
     .then(result => {
       res.json({
         data: result
@@ -39,11 +39,11 @@ app.get("/:id", async (res, req) => {
     })
 })
 
-app.post("/", async (res, req) => {
+app.post("/", auth, async (res, req) => {
   let data = {
     username: req.body.username,
     nama: req.body.nama,
-    password: req.body.password,
+    password: md5(req.body.password),
     level: req.body.level,
   }
   petugas.create(data)
@@ -60,14 +60,14 @@ app.post("/", async (res, req) => {
     })
 })
 
-app.put("/", async (res, req) => {
+app.put("/", auth, async (res, req) => {
   let param = {
-    id_petugas : req.body.id
+    id_petugas: req.body.id
   }
   let data = {
     username: req.body.username,
     nama: req.body.nama,
-    password: req.body.password,
+    password: md5(req.body.password),
     level: req.body.level,
   }
   petugas.update({ where: param })
@@ -84,11 +84,11 @@ app.put("/", async (res, req) => {
     })
 })
 
-app.delete("/:id", async (res, req) => {
+app.delete("/:id", auth, async (res, req) => {
   let param = {
-    id_petugas : req.params.id
+    id_petugas: req.params.id
   }
-  petugas.destroy({where:param})
+  petugas.destroy({ where: param })
     .then(result => {
       res.json({
         data: result
@@ -103,12 +103,12 @@ app.delete("/:id", async (res, req) => {
 
 //Login Admin
 app.post("/admin", async (res, req) => {
-  let param ={
-    username : req.params.username,
-    password : md5(req.params.username),
-    level : "admin"
+  let param = {
+    username: req.params.username,
+    password: md5(req.params.username),
+    level: "admin"
   }
-  let result = await patugas.findOne({where: param})
+  let result = await patugas.findOne({ where: param })
   if (result) {
     let payload = JSON.stringify(result)
     //generate token
@@ -128,12 +128,12 @@ app.post("/admin", async (res, req) => {
 
 //Login petugas
 app.post("/petugas", async (res, req) => {
-  let param ={
-    username : req.params.username,
-    password : md5(req.params.username),
-    level : "petugas"
+  let param = {
+    username: req.params.username,
+    password: md5(req.params.username),
+    level: "petugas"
   }
-  let result = await patugas.findOne({where: param})
+  let result = await patugas.findOne({ where: param })
   if (result) {
     let payload = JSON.stringify(result)
     //generate token
