@@ -150,3 +150,5 @@ app.post("/petugas", async (res, req) => {
     })
   }
 })
+
+module.exports = app
